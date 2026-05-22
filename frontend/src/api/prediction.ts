@@ -13,7 +13,7 @@ export interface PredictionResponse {
 }
 
 // API base URL
-const API = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+const API = "http://192.168.0.5:8000";
 
 // axios instance
 const api = axios.create({
