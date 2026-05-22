@@ -1,4 +1,4 @@
-﻿import axios from 'axios';
+﻿import axios from "axios";
 
 export interface RideInput {
   Number_of_Riders: number;
@@ -12,14 +12,21 @@ export interface PredictionResponse {
   predicted_price: number;
 }
 
+// API base URL
+const API = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
+// axios instance
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: API,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
-export async function predictPrice(data: RideInput): Promise<PredictionResponse> {
-  const response = await api.post<PredictionResponse>('/predict', data);
+// API call function
+export async function predictPrice(
+  data: RideInput,
+): Promise<PredictionResponse> {
+  const response = await api.post<PredictionResponse>("/predict", data);
   return response.data;
 }
