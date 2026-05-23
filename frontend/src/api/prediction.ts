@@ -12,8 +12,8 @@ export interface PredictionResponse {
   predicted_price: number;
 }
 
-// API base URL
-const API = "http://192.168.0.5:8000";
+// API base URL (from Vercel env)
+const API = import.meta.env.VITE_API_URL;
 
 // axios instance
 const api = axios.create({
