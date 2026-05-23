@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent } from "react";
-import axios from "axios";
+import { predictPrice } from "../api/prediction";
 import {
   Users,
   MapPin,
@@ -42,14 +42,14 @@ const Dashboard = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post("http://127.0.0.1:8000/predict", {
+      const data = await predictPrice({
         Number_of_Riders: Number(formData.Number_of_Riders),
         Location_Category: formData.Location_Category,
         Time_of_Booking: formData.Time_of_Booking,
         Vehicle_Type: formData.Vehicle_Type,
         Expected_Ride_Duration: Number(formData.Expected_Ride_Duration),
       });
-      setPrediction(response.data.predicted_price);
+      setPrediction(data.predicted_price);
     } catch (err: any) {
       setError(
         err?.response?.data?.detail || "Unable to generate a prediction.",

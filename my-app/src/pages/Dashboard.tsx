@@ -53,7 +53,7 @@ const Dashboard = () => {
     setPrediction(null);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/predict",
+        `${import.meta.env.VITE_API_URL ?? "https://pricing-6.onrender.com"}/predict`,
         formData,
       );
       setPrediction(response.data.predicted_price);

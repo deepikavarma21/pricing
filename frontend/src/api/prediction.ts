@@ -12,8 +12,8 @@ export interface PredictionResponse {
   predicted_price: number;
 }
 
-// API base URL (from Vercel env)
-const API = import.meta.env.VITE_API_URL;
+// API base URL (from Vercel env). Fallback to deployed backend.
+const API = import.meta.env.VITE_API_URL ?? "https://pricing-6.onrender.com";
 
 // axios instance
 const api = axios.create({
